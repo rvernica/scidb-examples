@@ -1,0 +1,30 @@
+
+insert(
+  redimension(
+    apply(
+      cross_join(
+        filter(
+          index_lookup(
+            build(<k:string> [i=0:0,1,0], '$T_LETTER'),
+            rec_letter, k),
+          k_index is null),
+        aggregate(rec_letter, count(*))),
+      val, k,
+      letter, int64(count)),
+    rec_letter),
+  rec_letter);
+
+insert(
+  redimension(
+    apply(
+      cross_join(
+        aio_input('$T_FILE', 'num_attributes=1'),
+        index_lookup(
+          build(<k:string> [i=0:0,1,0], '$T_LETTER'),
+          rec_letter, k)),
+      val, int64(a0),
+      line, tuple_no,
+      letter, k_index,
+      num, $T_NUM),
+    rec),
+  rec);

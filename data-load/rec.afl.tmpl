@@ -1,0 +1,14 @@
+
+store(
+  aio_input('$T_FILE', 'num_attributes=1'),
+  rec_file);
+
+insert(
+  redimension(
+    apply(
+      rec_file,
+      val, int64(a0),
+      line, tuple_no,
+      num, $T_NUM),
+    rec),
+  rec);
