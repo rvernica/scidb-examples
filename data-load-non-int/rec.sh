@@ -1,8 +1,9 @@
 #!/bin/bash
 
 iquery --afl --query \
-       'create array rec<val:int64> [line=0:*,10,0, letter=0:*,10,0, num=0:*,10,0];
-        create array rec_letter<val:string> [letter=0:*,10,0]'
+    "load_library('accelerated_io_tools'); \
+     create array rec<val:int64> [line=0:*,10,0, letter=0:*,10,0, num=0:*,10,0]; \
+     create array rec_letter<val:string> [letter=0:*,10,0]"
 
 dir=$(dirname $(readlink -f $0))
 query_file=`mktemp`
