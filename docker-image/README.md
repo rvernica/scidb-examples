@@ -1,31 +1,25 @@
 # Docker Image Example
 
-The provided [Dockerfile](Dockerfile) builds a [Docker](https://www.docker.com) image for SciDB `15.12`. The Dockerfile follows, step by step, the instructions provided in the official documentation, [SciDB Community Edition Installation Guide](https://paradigm4.atlassian.net/wiki/display/ESD/SciDB+Community+Edition+Installation+Guide).
+The provided [Dockerfile](Dockerfile) builds a [Docker](https://www.docker.com/) image for SciDB `15.12`. The Dockerfile follows, step by step, the instructions provided in the official documentation, [SciDB Community Edition Installation Guide](https://paradigm4.atlassian.net/wiki/display/ESD/SciDB+Community+Edition+Installation+Guide).
 
-The image is space *inefficient* (its size is `6GB`) and does *not* follow the Dockerfile best practices. This image is just an example.
+The image is space *inefficient* (its size is `6GB`) and does *not* follow the Dockerfile best practices. This image is just an example. More efficient SciDB Docker images are available in the [docker-library](/rvernica/docker-library/tree/master/scidb) repository.
 
 ## Building the Image
 
-The image is built automatically on [Docker Hub]() and can be downloaded using:
+The image can be built locally using:
 
 ```python
-# docker pull rvernica/scidb-examples:15.12
+# docker build --tag scidb .
 ```
 
-The image can also be built locally using:
-
-```python
-# docker build --tag scidb:15.12 .
-```
-
-The image installs SciDB dependencies, downloads the SciDB source code, and builds and installs SciDB. The official location for SciDB source code is on [Google Drive](https://drive.google.com/folderview?id=0B7yt0n33Us0rT1FJdmxFV2g0OHc&usp=drive_web#list), but because Google Drive does not provide direct access to files (for example using `wget`), a [mirror](https://bintray.com/rvernica/generic) of the SciDB source in Bintray is used.
+The image installs SciDB dependencies, downloads the SciDB source code, and builds and installs SciDB. The official location for SciDB source code is on [Google Drive](https://drive.google.com/folderview?id=0B7yt0n33Us0rT1FJdmxFV2g0OHc&usp=drive_web#list), but because Google Drive does not provide direct access to files (for example using `wget`), a [mirror](https://bintray.com/rvernica/generic/) of the SciDB source in Bintray is used.
 
 ## Using the Image
 
 The image contains an [`ENTRYPOINT`](https://docs.docker.com/engine/reference/builder/#/entrypoint) script which starts the SSH, PostgeSQL and SciDB servers. Upon exit, the script stops the SciDB and PostgreSQL servers. A container can be started from this image using:
 
 ```python
-# docker run --tty --interactive --name scidb rvernica/scidb-examples:15.12
+# docker run --tty --interactive --name scidb scidb
  * Starting OpenBSD Secure Shell server sshd                             [ OK ]
  * Starting PostgreSQL 9.3 database server                               [ OK ]
 scidb.py: INFO: Found 0 scidb processes
