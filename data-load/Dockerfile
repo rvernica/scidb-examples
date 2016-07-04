@@ -1,5 +1,4 @@
-FROM scidb:15.12-ubuntu-aio
-ENV SCIDB_NAME=mydb
+FROM rvernica/scidb:15.12-ext
 
 COPY . /test
 
