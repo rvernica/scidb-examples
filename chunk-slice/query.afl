@@ -20,7 +20,7 @@ store(
 
 
 -- -- Chocking the slice Operator
--- slice(taz, i, 0);
+slice(taz, i, 0);
 show(taz);
 
 
