@@ -1,5 +1,8 @@
 FROM rvernica/scidb:15.12-ext
 
+## Install envsubst
+RUN apt-get update; apt-get install --assume-yes gettest
+
 COPY . /test
 
 ## Re-create ".pgpass" file due to hard links created by Docker Hub
