@@ -1,7 +1,7 @@
 FROM rvernica/scidb:15.12-ext
 
 ## Install envsubst
-RUN apt-get update; apt-get install --assume-yes gettest
+RUN apt-get update; apt-get install --assume-yes gettext
 
 COPY . /test
 
