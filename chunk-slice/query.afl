@@ -1,0 +1,30 @@
+create array foo<x:int64> [i];
+show(foo);
+
+create array bar<x:int64> [i, j];
+show(bar);
+
+
+## A Few Joins
+store(
+    redimension(
+        build(<x:int64> [i=0:1,?,?], i),
+        foo),
+    foo);
+
+store(
+    cross_join(
+        cross_join(foo, foo),
+        foo),
+    taz);
+
+
+## Chocking the slice Operator
+# slice(taz, i, 0);
+show(taz);
+
+
+## Alternative
+redimension(
+     between(taz, 0, null, null, 0, null, null),
+     <x:int64,x_2:int64,x_3:int64> [i_2=0:*,1000000,0,i_3=0:*,1000000,0]);
