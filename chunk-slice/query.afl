@@ -5,7 +5,7 @@ create array bar<x:int64> [i, j];
 show(bar);
 
 
-## A Few Joins
+-- -- A Few Joins
 store(
     redimension(
         build(<x:int64> [i=0:1,?,?], i),
@@ -19,12 +19,12 @@ store(
     taz);
 
 
-## Chocking the slice Operator
-# slice(taz, i, 0);
+-- -- Chocking the slice Operator
+-- slice(taz, i, 0);
 show(taz);
 
 
-## Alternative
+-- -- Alternative
 redimension(
      between(taz, 0, null, null, 0, null, null),
      <x:int64,x_2:int64,x_3:int64> [i_2=0:*,1000000,0,i_3=0:*,1000000,0]);
