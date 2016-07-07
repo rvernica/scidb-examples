@@ -12,5 +12,5 @@ RUN cp /root/.pgpass /root/.pgpass.bk && mv /root/.pgpass.bk /root/.pgpass && \
     service postgresql start && \
     scidb.py startall $SCIDB_NAME && \
     bash -e rec.sh && \
-    iquery --afl --query-file test.afl > test.curent && \
+    iquery --afl --query-file test.afl > test.current && \
     diff test.gold test.current
