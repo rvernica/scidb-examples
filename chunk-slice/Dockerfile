@@ -8,5 +8,5 @@ RUN cp /root/.pgpass /root/.pgpass.bk && mv /root/.pgpass.bk /root/.pgpass && \
     service ssh start && \
     service postgresql start && \
     scidb.py startall $SCIDB_NAME && \
-    iquery --afl --query-file query.afl > test.current && \
+    iquery --afl --query-file query.afl | tee test.current && \
     diff test.gold test.current
