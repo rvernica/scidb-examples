@@ -47,7 +47,7 @@ RUN ssh-keygen -f /home/$scidb_usr/.ssh/id_rsa -N ''
 RUN chmod 755 /home/$scidb_usr
 RUN chmod 755 /home/$scidb_usr/.ssh
 
-## Avoid setting passwrod and providing it to "deploy.sh access"
+## Avoid setting password and providing it to "deploy.sh access"
 RUN cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
 RUN cat /root/.ssh/id_rsa.pub >> /home/$scidb_usr/.ssh/authorized_keys
 
