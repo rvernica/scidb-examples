@@ -12,7 +12,7 @@ The image can be built locally using:
 # docker build --tag scidb .
 ```
 
-The image installs SciDB dependencies, downloads the SciDB source code, and builds and installs SciDB. The official location for SciDB source code is on [Google Drive](https://drive.google.com/folderview?id=0B7yt0n33Us0rT1FJdmxFV2g0OHc&usp=drive_web#list), but because Google Drive does not provide direct access to files (for example using `wget`), a [mirror](https://bintray.com/rvernica/generic/) of the SciDB source in Bintray is used.
+The image installs SciDB dependencies, downloads the SciDB source code, and builds and installs SciDB. The official location for SciDB source code is on [Google Drive](https://drive.google.com/folderview?id=0B7yt0n33Us0rT1FJdmxFV2g0OHc&usp=drive_web#list), but because Google Drive does not provide direct access to files (for example using `wget`), a non-official mirror of the SciDB source in [Bintray](https://bintray.com/rvernica/generic/scidb-src/15.12#files) is used.
 
 ## Using the Image
 
