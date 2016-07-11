@@ -1,7 +1,8 @@
-# Chunk Size and Slice Example
+# Chunk Length and Slice Example
 
 * Requirements: `SciDB 15.12`
 * Usage: `iquery --afl query.afl`
+* See: [Keep an Eye on the Chunk Length](http://rvernica.github.io/2016/07/chunk-slice)
 
 Assumes SciDB is running on the localhost on the default port and no authentication is required. Running the query results in three new arrays, `foo`, `bar`, and `taz`. In the `query.afl` file, the commented out `slice` query runs for a long time.
 

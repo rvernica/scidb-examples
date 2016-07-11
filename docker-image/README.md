@@ -1,6 +1,6 @@
 # Docker Image Example
 
-The provided [Dockerfile](Dockerfile) builds a [Docker](https://www.docker.com/) image for SciDB `15.12`. The Dockerfile follows, step by step, the instructions provided in the official documentation, [SciDB Community Edition Installation Guide](https://paradigm4.atlassian.net/wiki/display/ESD/SciDB+Community+Edition+Installation+Guide).
+The provided [Dockerfile](Dockerfile) builds a [Docker](https://www.docker.com/) image for SciDB `15.12`. The Dockerfile follows, step by step, the instructions provided in the official documentation, [SciDB Community Edition Installation Guide](https://paradigm4.atlassian.net/wiki/display/ESD/SciDB+Community+Edition+Installation+Guide). See [Unleashing SciDB in a Docker Container](http://rvernica.github.io/2016/06/docker-image) for more details.
 
 The image is space *inefficient* (its size is `6GB`) and does *not* follow the Dockerfile best practices. This image is just an example. More efficient SciDB Docker images are available in the [docker-library](/rvernica/docker-library/tree/master/scidb) repository.
 
