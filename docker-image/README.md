@@ -18,8 +18,8 @@ The image installs SciDB dependencies, downloads the SciDB source code, and buil
 
 The image contains an [`ENTRYPOINT`](https://docs.docker.com/engine/reference/builder/#/entrypoint) script which starts the SSH, PostgeSQL and SciDB servers. Upon exit, the script stops the SciDB and PostgreSQL servers. A container can be started from this image using:
 
-```python
-# docker run --tty --interactive --name scidb scidb
+```bash
+$ docker run --tty --interactive --name scidb scidb
  * Starting OpenBSD Secure Shell server sshd                             [ OK ]
  * Starting PostgreSQL 9.3 database server                               [ OK ]
 scidb.py: INFO: Found 0 scidb processes
@@ -42,5 +42,5 @@ exit
 scidb.py: INFO: stop(server 0 (127.0.0.1))
 scidb.py: INFO: Found 0 scidb processes
  * Stopping PostgreSQL 9.3 database server                               [ OK ]
-# docker rm scidb
+$ docker rm scidb
 ```
