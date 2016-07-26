@@ -1,0 +1,26 @@
+
+load_library('accelerated_io_tools');
+
+store(
+  aio_input('/test/rec.txt', 'num_attributes=3', 'split_on_dimension=1'),
+  rec_file);
+
+store(
+  redimension(
+    apply(
+      between(rec_file, 0, 0, 0, 0, 0, 0, 0, 2),
+      pos, int64(a)),
+    <pos:int64>[attribute_no]),
+  rec_head);
+
+store(
+  redimension(
+    apply(
+      between(rec_file, 1, 0, 0, 0, null, 0, 0, 2),
+      val, int64(a)),
+    <val:int64>[tuple_no, attribute_no]),
+  rec_body);
+
+store(
+  cross_join(rec_body, rec_head, rec_body.attribute_no, rec_head.attribute_no),
+  rec);
