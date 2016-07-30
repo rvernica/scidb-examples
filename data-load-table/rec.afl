@@ -1,26 +1,112 @@
 
 load_library('accelerated_io_tools');
 
+
+-- -- Simple Table-like Data
+aio_input('/test/rec-1.txt', 'num_attributes=3');
+
+redimension(
+  apply(
+    aio_input('/test/rec-1.txt', 'num_attributes=3'),
+    x,   int64(a0),
+    y,   int64(a1),
+    val, int64(a2)),
+  <x: int64, y: int64, val: int64>[tuple_no]);
+
+redimension(
+  apply(
+    aio_input('/test/rec-1.txt', 'num_attributes=3'),
+    x, int64(a0),
+    y, int64(a1),
+    val, int64(a2)),
+  <val: int64>[x, y, tuple_no]);
+
+
+-- -- Large Table-like Data
+aio_input('/test/rec-1.txt', 'num_attributes=3', 'split_on_dimension=1');
+
+redimension(
+  between(
+    apply(
+      aio_input('/test/rec-1.txt', 'num_attributes=3', 'split_on_dimension=1'),
+      i,   tuple_no,
+      j,   attribute_no,
+      val, int64(a)),
+    null, null, null, null,
+    null, null, null, 2),
+  <val:int64>[i, j]);
+
+
+-- -- Large Table-like Data with Header Row
+create array rec<pos:float, val:int64>[row, col];
+
 store(
-  aio_input('/test/rec.txt', 'num_attributes=3', 'split_on_dimension=1'),
-  rec_file);
+  aio_input('/test/rec-2-1.txt', 'num_attributes=3', 'split_on_dimension=1'),
+  rec_raw);
 
 store(
   redimension(
     apply(
-      between(rec_file, 0, 0, 0, 0, 0, 0, 0, 2),
-      pos, int64(a)),
-    <pos:int64>[attribute_no]),
+      between(
+        rec_raw,
+        0, null, null, null,
+        0, null, null, 2),
+      pos, float(a),
+      col, attribute_no),
+    <pos:float>[col]),
   rec_head);
 
 store(
   redimension(
     apply(
-      between(rec_file, 1, 0, 0, 0, null, 0, 0, 2),
-      val, int64(a)),
-    <val:int64>[tuple_no, attribute_no]),
+      between(
+        rec_raw,
+        1,    null, null, null,
+        null, null, null, 2),
+      val, int64(a),
+      row, tuple_no,
+      col, attribute_no),
+    <val:int64>[row, col]),
   rec_body);
 
 store(
-  cross_join(rec_body, rec_head, rec_body.attribute_no, rec_head.attribute_no),
+  redimension(
+    cross_join(rec_body, rec_head,  rec_body.col, rec_head.col),
+    rec),
+  rec);
+
+
+store(
+  aio_input('/test/rec-2-1.txt', 'num_attributes=3', 'split_on_dimension=1'),
+  rec_raw);
+
+store(
+  redimension(
+    apply(
+      between(
+        rec_raw,
+        0, null, null, null,
+        0, null, null, 2),
+      pos, float(a),
+      col, attribute_no),
+    <pos:float>[col]),
+  rec_head);
+
+store(
+  redimension(
+    apply(
+      between(
+        rec_raw,
+        1,    null, null, null,
+        null, null, null, 2),
+      val, int64(a),
+      row, tuple_no,
+      col, attribute_no),
+    <val:int64>[row, col]),
+  rec_body);
+
+store(
+  redimension(
+    cross_join(rec_body, rec_head,  rec_body.col, rec_head.col),
+    rec),
   rec);
