@@ -41,13 +41,13 @@ create array rec<pos:float, val:int64>[row, col];
 
 store(
   aio_input('/test/rec-2-1.txt', 'num_attributes=3', 'split_on_dimension=1'),
-  rec_raw);
+  rec_file);
 
 store(
   redimension(
     apply(
       between(
-        rec_raw,
+        rec_file,
         0, null, null, null,
         0, null, null, 2),
       pos, float(a),
@@ -59,7 +59,7 @@ store(
   redimension(
     apply(
       between(
-        rec_raw,
+        rec_file,
         1,    null, null, null,
         null, null, null, 2),
       val, int64(a),
@@ -77,13 +77,13 @@ store(
 
 store(
   aio_input('/test/rec-2-1.txt', 'num_attributes=3', 'split_on_dimension=1'),
-  rec_raw);
+  rec_file);
 
 store(
   redimension(
     apply(
       between(
-        rec_raw,
+        rec_file,
         0, null, null, null,
         0, null, null, 2),
       pos, float(a),
@@ -95,7 +95,7 @@ store(
   redimension(
     apply(
       between(
-        rec_raw,
+        rec_file,
         1,    null, null, null,
         null, null, null, 2),
       val, int64(a),
