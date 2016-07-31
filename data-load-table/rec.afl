@@ -109,3 +109,15 @@ store(
     cross_join(rec_body, rec_head,  rec_body.col, rec_head.col),
     rec),
   rec);
+
+
+-- -- Buffer Size Caveat
+aio_input('/test/rec-3.txt', 'num_attributes=3', 'buffer_size=10');
+
+sort(
+  apply(
+    aio_input('/test/rec-3.txt', 'num_attributes=3', 'buffer_size=10'),
+    chunk_no,  tuple_no / 10,
+    inst,      dst_instance_id,
+    chunk_idx, tuple_no % 10),
+  chunk_no, inst, chunk_idx);
