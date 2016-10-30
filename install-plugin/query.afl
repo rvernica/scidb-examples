@@ -1,0 +1,10 @@
+load_library('dev_tools');
+filter(list('operators'), library = 'dev_tools');
+
+install_github('paradigm4/limit');
+load_library('limit');
+filter(list('operators'), library = 'limit');
+
+install_github('paradigm4/grouped_aggregate');
+load_library('grouped_aggregate');
+filter(list('operators'), library = 'grouped_aggregate');
