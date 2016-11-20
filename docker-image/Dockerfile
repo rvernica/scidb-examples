@@ -26,6 +26,12 @@ RUN useradd $scidb_usr -s /bin/bash -m -g $scidb_usr
 ## Download SciDB Community Edition
 ## ---
 WORKDIR $dev_dir
+ARG scidb_url="https://docs.google.com/uc?id=0B7yt0n33Us0raWtCYmNlZWRxWG8&export=download"
+RUN wget --no-verbose --output-document - --load-cookies cookies.txt \
+        "$scidb_url&`wget --no-verbose --output-document - \
+            --save-cookies cookies.txt "$scidb_url" | \
+            grep --only-matching 'confirm=[^&]*'`"
+
 RUN wget --no-verbose \
         https://dl.bintray.com/rvernica/generic/scidb-15.12.1.4cadab5.tar.gz
 RUN tar -xzf scidb-15.12.1.4cadab5.tar.gz
