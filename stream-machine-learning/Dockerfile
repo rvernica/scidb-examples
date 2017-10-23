@@ -23,7 +23,11 @@ RUN wget --no-verbose --output-document -                                  \
         https://github.com/Paradigm4/stream/archive/python.tar.gz          \
     |  tar --extract --gzip --directory=/usr/local/src                     \
     && pip install -r /usr/local/src/stream-python/py_pkg/requirements.txt \
-    && pip install /usr/local/src/stream-python/py_pkg
+    && pip install /usr/local/src/stream-python/py_pkg                     \
+    && pip install                                                         \
+        scidb-py                                                           \
+        scipy                                                              \
+        sklearn
 
 
 ## Install stream plugin
