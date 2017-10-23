@@ -8,3 +8,4 @@ This is a collection of usage examples in SciDB discussed in the [Thinking in Sc
    1. [chunk-slice](chunk-slice) used in [Keep an Eye on the Chunk Length](http://rvernica.github.io/2016/07/chunk-slice)
    1. [data-load-table](data-load-table) used in [The Power of Loading Data - Part 3](http://rvernica.github.io/2016/08/load-data-table)
    1. [install-plugin](install-plugin) used in [Extending SciDB - Part 1](http://rvernica.github.io/2016/10/extend-scidb-doc)
+   1. [stream-machine-learning](stream-machine-learning) used in [Machine Learning in SciDB](http://rvernica.github.io/2017/10/streaming-machine-learning)
